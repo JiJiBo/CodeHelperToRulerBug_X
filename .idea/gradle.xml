@@ -9,8 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/firstlibrary" />
-            <option value="$PROJECT_DIR$/v26library" />
-            <option value="$PROJECT_DIR$/v28library" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
