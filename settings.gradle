@@ -1,1 +1,1 @@
-include ':firstlibrary'
+include ':firstlibrary', ':v28library', ':v26library'
