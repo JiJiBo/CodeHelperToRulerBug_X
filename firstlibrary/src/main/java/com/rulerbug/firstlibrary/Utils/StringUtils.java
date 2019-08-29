@@ -85,4 +85,8 @@ public class StringUtils {
 
         return LongTimeToStringTime(time, "yyyy/MM/dd");
     }
+
+    public static final String DATA_FORMATE_1 = "yyyy/MM/dd";
+    public static final String DATA_FORMATE_2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATA_FORMATE_3 = "yyyy年MM月dd日";
 }

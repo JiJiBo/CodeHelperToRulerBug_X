@@ -16,6 +16,10 @@ public class CacheUtils {
         saveStringCache(str, name, 1000 * 60 * 60 * 24 * 10);
     }
 
+    public static void setFilePath(String path) {
+        absolutePath = path;
+    }
+
     public static void saveStringCache(String str, String name, long time) {
         saveStringCache(str, name, time, absolutePath);
     }

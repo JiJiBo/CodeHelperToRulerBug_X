@@ -3,7 +3,7 @@ package com.rulerbug.firstlibrary.Utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class spUtils {
+public class SpUtils {
     private static String SPFILENAME = "SmartBeiJingSp";
 
     /**
