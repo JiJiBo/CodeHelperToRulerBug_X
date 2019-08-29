@@ -3,7 +3,6 @@ package com.rulerbug.firstlibrary.View;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,8 +37,10 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
      * @param orientation
      */
     private static final int COLOR_GRAY = 0xffEAEAEA;
+    private Context context;
 
-    public RecycleViewDivider(Context context, int orientation) {
+    public RecycleViewDivider(Context context, int orientation, int offset_left) {
+        this.context = context;
         //样式的方向
         this.mOrientation = orientation;
         if (orientation != LinearLayoutManager.VERTICAL && orientation != LinearLayoutManager.HORIZONTAL) {
@@ -56,6 +57,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
          * 设置画笔模式
          */
         mPaint.setStyle(Paint.Style.FILL);
+        OFFSET_LEFT = offset_left;
     }
 
     //绘制
@@ -68,7 +70,10 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
             drawHorizontal(c, parent);
         }
     }
-private static final int OFFSET=20;
+
+    private static int OFFSET_LEFT = 60;
+    private static int OFFSET_RIGHT = 0;
+
     /**
      * 绘制纵向 item 分割线
      *
@@ -84,8 +89,12 @@ private static final int OFFSET=20;
             RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) child.getLayoutParams();
             final int top = child.getBottom() + layoutParams.bottomMargin;
             final int bottom = top + mItemSize;
-            canvas.drawRect(left+OFFSET, top, right-OFFSET, bottom, mPaint);
+            canvas.drawRect(left + dp2px(OFFSET_LEFT), top, right - dp2px(OFFSET_RIGHT), bottom, mPaint);
         }
+    }
+
+    public int dp2px(int dp) {
+        return (int) (context.getResources().getDisplayMetrics().density * dp + 0.5f);
     }
 
     /**
