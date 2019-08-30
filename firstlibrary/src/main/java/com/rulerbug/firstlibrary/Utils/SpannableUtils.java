@@ -11,4 +11,9 @@ public class SpannableUtils {
         ssb.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return ssb;
     }
+    public static SpannableStringBuilder setColor(SpannableStringBuilder text, int start, int end, int color) {
+        SpannableStringBuilder ssb = new SpannableStringBuilder(text);
+        ssb.setSpan(new ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return ssb;
+    }
 }
