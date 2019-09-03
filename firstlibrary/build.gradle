@@ -7,7 +7,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 android {
     compileSdkVersion 16
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 10
         targetSdkVersion 16
         versionCode 1
         versionName "1.0"
