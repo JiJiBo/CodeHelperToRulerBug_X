@@ -1,21 +1,16 @@
 package com.rulerbug.firstlibrary.Utils;
 
-public class FileSizeUtil {
-    public  static String FormetFileSize(long size) {
-        long kb = 1024;
-        long mb = kb * 1024;
-        long gb = mb * 1024;
+import java.text.DecimalFormat;
 
-        if (size >= gb) {
-            return String.format("%.1f GB", (float) size / gb);
-        } else if (size >= mb) {
-            float f = (float) size / mb;
-            return String.format(f > 100 ? "%.0f MB" : "%.1f MB", f);
-        } else if (size >= kb) {
-            float f = (float) size / kb;
-            return String.format(f > 100 ? "%.0f KB" : "%.1f KB", f);
-        } else
-            return String.format("%d B", size);
+public class FileSizeUtil {
+    public static  String renderFileSize(String fileSize) {
+        String[] arr = {"Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};
+        float srcsize = Float.valueOf(fileSize);
+        int index = (int) (Math.floor(Math.log(srcsize) / Math.log(1024)));
+        double size = srcsize / Math.pow(1024, index);
+        size = Double.valueOf(new DecimalFormat("#.00").format(size));
+        return size + arr[index];
     }
+
 
 }

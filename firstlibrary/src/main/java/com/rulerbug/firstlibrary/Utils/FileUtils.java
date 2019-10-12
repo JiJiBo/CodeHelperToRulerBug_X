@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtils {
-    private static String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "aaa";
+    private static String storePath = getStorePath()+ File.separator + "aaa";
 
     //保存图片到本地
     public static String saveBitmap(Bitmap bmp, Context context, Activity ma, String filePath) {  // 首先保存图片的路径
@@ -47,5 +47,8 @@ public class FileUtils {
 
     public static String saveBitmap(Bitmap bmp, Context context, Activity ma) {
         return saveBitmap(bmp, context, ma, storePath);
+    }
+    public static String getStorePath(){
+        return  Environment.getExternalStorageDirectory().getAbsolutePath() ;
     }
 }
