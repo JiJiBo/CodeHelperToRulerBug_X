@@ -5,8 +5,11 @@ import java.util.Date;
 
 public class timeUtil {
     public static String getTimeString() {
-        String timeStr = null;
         String reg = "yyyy年MM月dd日";
+        return getTimeString(reg);
+    }
+    public static String getTimeString(String reg) {
+        String timeStr = null;
         long time = System.currentTimeMillis();
         Date date = new Date();
         date.setTime(time);
