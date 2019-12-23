@@ -4,11 +4,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class timeUtil {
-    public static String getTimeString() {
+
+
+    public static final String DATA_FORMATE_1 = "yyyy/MM/dd";
+    public static final String DATA_FORMATE_2 = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATA_FORMATE_3 = "yyyy年MM月dd日";
+    public static final String DATA_FORMATE_4 = "yyyy MM dd";
+    public static final String DATA_FORMATE_5 = "yyyy-MM-dd";
+    public static final String DATA_FORMATE_6 = "yyyy MM dd hh:mm:ss";
+    public static final String DATA_FORMATE_7 = "yyyy-MM-dd hh:mm:ss";
+
+    public static String getCurrentTimrString() {
         String reg = "yyyy年MM月dd日";
-        return getTimeString(reg);
+        return getCurrentTimrString(reg);
     }
-    public static String getTimeString(String reg) {
+
+    public static String getCurrentTimrString(String reg) {
         String timeStr = null;
         long time = System.currentTimeMillis();
         Date date = new Date();
@@ -44,6 +55,18 @@ public class timeUtil {
         String sss = get_miao(time) + "";
         String str = ds + "天" + hs + ":" + ms + ":" + sss;
         return str;
+    }
+
+
+    public static String LongTimeToStringTime(long time, String reg) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(reg);
+        String s = simpleDateFormat.format(new Date(time));
+        return s;
+    }
+
+    public static String LongTimeToStringTime(long time) {
+
+        return LongTimeToStringTime(time, "yyyy/MM/dd");
     }
 
     private static int get_day(long time) {

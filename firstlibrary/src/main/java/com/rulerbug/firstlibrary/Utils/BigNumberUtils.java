@@ -2,7 +2,7 @@ package com.rulerbug.firstlibrary.Utils;
 
 import java.math.BigDecimal;
 
-public class addReduceUtils {
+public class BigNumberUtils {
     //相加两个double
     public static double add(double a, double b) {
         BigDecimal b1 = new BigDecimal(a + "");

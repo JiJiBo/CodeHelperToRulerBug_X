@@ -54,19 +54,6 @@ public class StringUtils {
         return true;
     }
 
-    public static String getCurTimeStr() {
-        Calendar cal = Calendar.getInstance();
-        String curDate = dateFormater.get().format(cal.getTime());
-        return curDate;
-    }
-
-    private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {
-        @Override
-        protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        }
-    };
-
     public static boolean toBool(String b) {
         try {
             return Boolean.parseBoolean(b);
@@ -75,18 +62,4 @@ public class StringUtils {
         return false;
     }
 
-    public static String LongTimeToStringTime(long time, String reg) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(reg);
-        String s = simpleDateFormat.format(new Date(time));
-        return s;
-    }
-
-    public static String LongTimeToStringTime(long time) {
-
-        return LongTimeToStringTime(time, "yyyy/MM/dd");
-    }
-
-    public static final String DATA_FORMATE_1 = "yyyy/MM/dd";
-    public static final String DATA_FORMATE_2 = "yyyy-MM-dd HH:mm:ss";
-    public static final String DATA_FORMATE_3 = "yyyy年MM月dd日";
 }

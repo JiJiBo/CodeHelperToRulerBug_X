@@ -1,6 +1,6 @@
 package com.rulerbug.firstlibrary.Utils;
 
-public class BluetoothUtils {
+public class HexUtils {
     /**
      * 用于建立十六进制字符的输出的大写字符数组
      */

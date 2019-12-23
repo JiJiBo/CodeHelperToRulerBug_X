@@ -1,6 +1,5 @@
 package com.rulerbug.firstlibrary.Utils;
 
-import android.os.Environment;
 import android.text.TextUtils;
 
 import java.io.BufferedReader;
@@ -10,7 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class CacheUtils {
-    public static String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "aaa";
+    public static String absolutePath = DirUtils.getDiskCachePath();
 
     public static void saveStringCache(String str, String name) {
         saveStringCache(str, name, 1000 * 60 * 60 * 24 * 10);
