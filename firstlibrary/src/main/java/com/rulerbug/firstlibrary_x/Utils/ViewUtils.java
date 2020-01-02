@@ -4,7 +4,7 @@ import android.view.View;
 
 import static com.rulerbug.firstlibrary_x.Utils.BugApp.getContext;
 
-public class viewUtils {
+public class ViewUtils {
 
     // 加载布局
     public static View inflate(int id) {
