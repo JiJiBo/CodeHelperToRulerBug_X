@@ -3,7 +3,7 @@ package com.rulerbug.firstlibrary_x.Utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TimeUtil {
+public class TimeUtils {
 
 
     public static final String DATA_FORMATE_1 = "yyyy/MM/dd";
