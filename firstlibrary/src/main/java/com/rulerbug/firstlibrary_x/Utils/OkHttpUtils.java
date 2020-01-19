@@ -170,10 +170,10 @@ public class OkHttpUtils {
         }
     }
 
-    public static MultipartBody getFileMultipartBody(String fileKey, File f) {
+    public static MultipartBody getFileMultipartBody(String name, String fileKey, File f) {
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=utf-8"), f);
         MultipartBody mBody = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("file", fileKey, fileBody)
+                .addFormDataPart(name, fileKey, fileBody)
                 .build();
         return mBody;
     }
