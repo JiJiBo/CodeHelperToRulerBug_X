@@ -40,10 +40,12 @@ public class BugCrashHandler implements UncaughtExceptionHandler {
     // CrashHandler实例
     private static BugCrashHandler INSTANCE;
     private String dirName = "appBug";
+    private boolean isSave = false;
 
-    public void init(Context context, String dirName) {
+    public void init(Context context, String dirName, boolean isSave) {
         this.dirName = dirName;
         mcontext = context;
+        this.isSave = isSave;
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
@@ -110,6 +112,9 @@ public class BugCrashHandler implements UncaughtExceptionHandler {
     }
 
     private String saveCrashInfo2File(Throwable ex) {
+        if (!isSave) {
+            return "";
+        }
         StringBuffer sb = new StringBuffer();
         for (Map.Entry<String, String> entry : infos.entrySet()) {
             String key = entry.getKey();
