@@ -68,9 +68,10 @@ public class BugCrashHandler implements UncaughtExceptionHandler {
                 Looper.loop();
             }
         }.start();
-        new BugActivityUtils().AppExit();
+
         collectDeviceInfo(mcontext);
         saveCrashInfo2File(ex);
+        new BugActivityUtils().AppExit();
         return true;
     }
 
