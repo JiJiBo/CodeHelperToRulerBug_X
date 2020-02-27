@@ -142,7 +142,7 @@ public class BugCrashHandler implements UncaughtExceptionHandler {
                 Environment.MEDIA_MOUNTED)) {
             try {
                 String path = getRootPath();
-                FileOutputStream fos = new FileOutputStream(path + fileName);
+                FileOutputStream fos = new FileOutputStream(path + File.separator + fileName);
                 fos.write(sb.toString().getBytes());
                 fos.close();
             } catch (IOException e) {
