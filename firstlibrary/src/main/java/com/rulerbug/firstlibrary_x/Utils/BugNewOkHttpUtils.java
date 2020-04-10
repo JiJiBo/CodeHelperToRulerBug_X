@@ -51,7 +51,6 @@ public class BugNewOkHttpUtils {
     public static String postString(String url, RequestBody body) {
         try {
             OkHttpClient client = new OkHttpClient();
-            //2. 创建请求的Request 对象
             Request request = new Request.Builder()
                     .url(url)
                     .post(body)
@@ -67,7 +66,6 @@ public class BugNewOkHttpUtils {
     public static void postString(String url, RequestBody body, Callback callbcak) {
         try {
             OkHttpClient client = new OkHttpClient();
-            //2. 创建请求的Request 对象
             Request request = new Request.Builder()
                     .url(url)
                     .post(body)
@@ -130,7 +128,6 @@ public class BugNewOkHttpUtils {
     public static void postFile(String url, MultipartBody body, Callback callbcak) {
         try {
             OkHttpClient client = new OkHttpClient();
-            //2. 创建请求的Request 对象
             Request request = new Request.Builder()
                     .url(url)
                     .post(body)
