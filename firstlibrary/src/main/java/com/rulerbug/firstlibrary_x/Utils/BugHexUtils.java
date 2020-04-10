@@ -1,57 +1,86 @@
 package com.rulerbug.firstlibrary_x.Utils;
 
 public class BugHexUtils {
-    /**
-     * 用于建立十六进制字符的输出的大写字符数组
-     */
-    private static final char[] DIGITS_UPPER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    /**
-     * 用于建立十六进制字符的输出的小写字符数组
-     */
-    private static final char[] DIGITS_LOWER = {'0', '1', '2', '3', '4', '5',
-            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-    public static String BytesToString(byte[] inHex, int nOff, int nLen) {
-        int i;
-        StringBuilder strResult = new StringBuilder();
-        strResult.append("");
-        for (i = 0; i < nLen; i++) {
-            strResult.append(String
-                    .valueOf(DIGITS_UPPER[(0xF0 & inHex[nOff + i]) >>> 4]));
-            strResult.append(String
-                    .valueOf(DIGITS_UPPER[inHex[nOff + i] & 0x0F]));
+
+    /**
+     * 字符串转换为16进制字符串
+     *
+     * @param s
+     * @return
+     */
+    public static String stringToHexString(String s) {
+        String str = "";
+        for (int i = 0; i < s.length(); i++) {
+            int ch = s.charAt(i);
+            String s4 = Integer.toHexString(ch);
+            str = str + s4;
         }
-        return AsciiStringToString(strResult.toString());
+        return str;
     }
 
-    public static String AsciiStringToString(String content) {
-        String result = "";
-        int length = content.length() / 2;
-        for (int i = 0; i < length; i++) {
-            String c = content.substring(i * 2, i * 2 + 2);
-            int a = hexStringToAlgorism(c);
-            char b = (char) a;
-            String d = String.valueOf(b);
-            result += d;
+    /**
+     * 16进制字符串转换为字符串
+     *
+     * @param s
+     * @return
+     */
+    public static String hexStringToString(String s) {
+        if (s == null || s.equals("")) {
+            return null;
         }
-        return result;
-    }
-
-    public static int hexStringToAlgorism(String hex) {
-        hex = hex.toUpperCase();
-        int max = hex.length();
-        int result = 0;
-        for (int i = max; i > 0; i--) {
-            char c = hex.charAt(i - 1);
-            int algorism = 0;
-            if (c >= '0' && c <= '9') {
-                algorism = c - '0';
-            } else {
-                algorism = c - 55;
+        s = s.replace(" ", "");
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(
+                        s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            result += Math.pow(16, max - i) * algorism;
         }
-        return result;
+        try {
+            s = new String(baKeyword, "gbk");
+            new String();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+
+    /**
+     * 16进制表示的字符串转换为字节数组
+     *
+     * @param s 16进制表示的字符串
+     * @return byte[] 字节数组
+     */
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] b = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            // 两位一组，表示一个字节,把这样表示的16进制字符串，还原成一个字节
+            b[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4) + Character
+                    .digit(s.charAt(i + 1), 16));
+        }
+        return b;
+    }
+
+    /**
+     * byte数组转16进制字符串
+     *
+     * @param bArray
+     * @return
+     */
+    public static final String bytesToHexString(byte[] bArray) {
+        StringBuffer sb = new StringBuffer(bArray.length);
+        String sTemp;
+        for (int i = 0; i < bArray.length; i++) {
+            sTemp = Integer.toHexString(0xFF & bArray[i]);
+            if (sTemp.length() < 2)
+                sb.append(0);
+            sb.append(sTemp.toUpperCase());
+        }
+        return sb.toString();
     }
 
 }
