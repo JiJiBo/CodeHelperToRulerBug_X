@@ -1,12 +1,21 @@
 package com.rulerbug.firstlibrary_x.Utils;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.rulerbug.firstlibrary_x.Domain.BugOkHttpDataBean;
 import com.rulerbug.firstlibrary_x.Domain.BugOkHttpDataList;
 import com.rulerbug.firstlibrary_x.Domain.BugOkHttpFileBean;
 import com.rulerbug.firstlibrary_x.Domain.BugOkHttpFileList;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +27,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
+import static com.rulerbug.firstlibrary_x.Utils.BugLogUtils.e;
 
 public class BugNewOkHttpUtils {
     public static InputStream getInputStrem(String url) {
@@ -33,6 +44,31 @@ public class BugNewOkHttpUtils {
         }
         return null;
     }
+
+    public static File getFile(String url, String path) {
+        try {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            Response response = client.newCall(request).execute();
+            InputStream inputStream = response.body().byteStream();
+            File file = new File(path);
+            OutputStream outStream = new FileOutputStream(file);
+            byte[] buffer = new byte[8 * 1024];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+            }
+            return file;
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
 
     public static String getString(String url) {
         try {
@@ -153,7 +189,8 @@ public class BugNewOkHttpUtils {
         return null;
     }
 
-    public static MultipartBody getFileMultipartBody(List<BugOkHttpDataBean> dataList, List<BugOkHttpFileBean> fileList) {
+    public static MultipartBody getFileMultipartBody
+            (List<BugOkHttpDataBean> dataList, List<BugOkHttpFileBean> fileList) {
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (BugOkHttpDataBean b : dataList) {
             builder.addFormDataPart(b.key, b.value);
@@ -173,7 +210,8 @@ public class BugNewOkHttpUtils {
         return builder.build();
     }
 
-    public static MultipartBody getFileMultipartBody(BugOkHttpDataList dataList, BugOkHttpFileList fileList) {
+    public static MultipartBody getFileMultipartBody(BugOkHttpDataList
+                                                             dataList, BugOkHttpFileList fileList) {
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (BugOkHttpDataBean b : dataList.dataList) {
             builder.addFormDataPart(b.key, b.value);
