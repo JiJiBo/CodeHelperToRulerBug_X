@@ -1,6 +1,11 @@
 package com.rulerbug.firstlibrary_x;
 
+import com.rulerbug.firstlibrary_x.Domain.SmartTime;
+import com.rulerbug.firstlibrary_x.Utils.BugSmartTimeUtils;
+
 import org.junit.Test;
+
+import java.util.Calendar;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +17,11 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+        Calendar now = Calendar.getInstance();
+        long start = now.getTimeInMillis();
+        now.add(Calendar.YEAR, 22222121);
+        long end = now.getTimeInMillis();
+        SmartTime t = BugSmartTimeUtils.between(start, end);
+        System.out.println(t.DES);
     }
 }
