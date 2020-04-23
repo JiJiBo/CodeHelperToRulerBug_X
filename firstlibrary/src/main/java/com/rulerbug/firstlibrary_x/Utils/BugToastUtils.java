@@ -30,11 +30,11 @@ public class BugToastUtils {
     }
 
     public void showShort(String msg) {
-        show(msg, 0);
+        show(msg, Toast.LENGTH_SHORT);
     }
 
     public void showLong(String msg) {
-        show(msg, 1);
+        show(msg, Toast.LENGTH_LONG);
     }
 
     public void cancle() {
